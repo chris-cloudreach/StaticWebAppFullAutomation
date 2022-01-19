@@ -44,7 +44,9 @@ jobs:
       - name: Manipulating userpoolid 
         id: userpolID
         run: |
-          terraform output userPoolId | cut -d'userPoolId' -f 2 > ~/userPoolId.txt
+          terraform output userPoolId | cut -d' ' -f 2 > ~/userPoolId.txt
+          uu=$(cat ~/userPoolId.txt)
+          echo "$uu" > ~/userPoolId.txt
           echo "checking userpool id"
           cat ~/userPoolId.txt
           
