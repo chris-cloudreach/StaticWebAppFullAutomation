@@ -62,7 +62,8 @@ jobs:
           aid=$(cat ~/appclient.txt)
           sed -i -e "s/xxx/$aid/" ./js/config.js
 
-          
+          i_url=$(cat ~/apigwurl.txt)
+          sed -i -e "s/zzz/$i_url/" ./js/config.js
           
           echo "printing modified config js"
           cat ./js/config.js
@@ -80,8 +81,8 @@ jobs:
       #   continue-on-error: true
 
 
-      # i_url=$(cat ~/apigwurl.txt)
-      #     sed -i -e "s/def/$i_url/" ./js/config.js
+      i_url=$(cat ~/apigwurl.txt)
+      sed -i -e "s/def/$i_url/" ./js/config.js
 
       # - name: Build config js file 
       #   id: buildConfig
