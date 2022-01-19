@@ -68,8 +68,9 @@ jobs:
       - name: Edit userpool in config js file 
         id: editConfig
         run: |
-          uid=$(cat ~/userPoolId.txt)
+          uid=$(cat ~/userPoolId2.txt)
           sed -i -e "s/xyz/$uid/" ./js/config.js
+          echo "printing modified config js"
           cat ./js/config.js
         continue-on-error: true
 
@@ -77,7 +78,7 @@ jobs:
         id: buildConfig
         run: |
           echo "building my file"
-          uid=$(cat ~/userPoolId.txt)
+          uid=$(cat ~/userPoolId2.txt)
           echo "userPoolId: " >> ./js/config2.js
           echo "$uid" >> ./js/config2.js
           echo " printing our config file"

@@ -1,6 +1,6 @@
 window._config = {
     cognito: {
-        userPoolId: xyz,
+        xyz,
         
         userPoolClientId,
         
