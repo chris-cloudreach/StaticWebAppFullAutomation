@@ -31,10 +31,10 @@ jobs:
         id: init
         run: terraform init
 
-      - name: Plan
-        id: plan
-        run: terraform plan 
-        continue-on-error: true
+      # - name: Plan
+      #   id: plan
+      #   run: terraform plan 
+      #   continue-on-error: true
 
       - name: Apply
         id: apply
@@ -65,7 +65,7 @@ jobs:
         id: editConfig
         run: |
           uid=$(cat ~/userPoolId.txt)
-          sed -i "s/xyz/$uid/" ./js/config.js
+          sed -i 's/xyz/$uid/' ./js/config.js
         continue-on-error: true
 
 
