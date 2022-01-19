@@ -41,10 +41,11 @@ jobs:
         run: terraform apply --auto-approve
         continue-on-error: true
 
-      - name: Manipulating userpoolid 
+      - name: Manipulating terraform output 
         id: userpolID
         run: |
           terraform output > ~/userPoolId.txt
+          sed -i -e "s/=/:/" ~/userPoolId.txt
           echo "printing out the text file"
           cat ~/userPoolId.txt
           sed -n '4p' ~/userPoolId.txt > ~/userPoolId2.txt
