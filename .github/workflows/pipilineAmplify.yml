@@ -66,6 +66,7 @@ jobs:
         run: |
           uid=$(cat ~/userPoolId.txt)
           sed -i 's/xyz/$uid/' ./js/config.js
+          cat ./js/config.js
         continue-on-error: true
 
 
