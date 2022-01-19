@@ -71,7 +71,8 @@ jobs:
 
       - name: Commit files # transfer the new html files back into the repository
         run: |
-          git config --local user.name "chris-cloudreach"
+          git config --global user.name "chris-cloudreach"
+          git config --global user.email "christopher.ogbunuzor@cloudreach.com"
           git add ./js/config.js
           git commit -m "Updating config js file"
 
