@@ -2,12 +2,12 @@ window._config = {
     cognito: {
         xyz,
         
-        userPoolClientId,
+        abc,
         
         region: 'us-east-2' // e.g. us-east-2
     },
     api: {
-        invokeUrl
+        def
         
     }
 };

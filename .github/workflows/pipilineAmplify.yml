@@ -48,42 +48,48 @@ jobs:
           echo "printing out the text file"
           cat ~/userPoolId.txt
           sed -n '4p' ~/userPoolId.txt > ~/userPoolId2.txt
+          sed -n '3p' ~/userPoolId.txt > ~/appclient.txt
+          sed -n '2p' ~/userPoolId.txt > ~/apigwurl.txt
           echo "printing out only userpool"
           cat ~/userPoolId2.txt
-          
-          
-        continue-on-error: true
+          cat ~/appclient.txt
+          cat ~/apigwurl.txt
 
-      # - name: Manipulating userpoolid 
-      #   id: userpolID
-      #   run: |
-      #     terraform output userPoolId > ~/userPoolId.txt
-      #     echo "checking userpool id"
-      #     cat ~/userPoolId.txt
-      #     sed -i -e "s/xyz/:/" ~/userPoolId.txt
-      #     echo "checking replacement in userpool id"
-      #     cat ~/userPoolId.txt
-      #   continue-on-error: true
-
-      - name: Edit userpool in config js file 
-        id: editConfig
-        run: |
+          echo "PREP CONFIG FILE"
           uid=$(cat ~/userPoolId2.txt)
           sed -i -e "s/xyz/$uid/" ./js/config.js
+
+          aid=$(cat ~/appclient.txt)
+          sed -i -e "s/abc/$aid/" ./js/config.js
+
+          i_url=$(cat ~/apigwurl.txt)
+          sed -i -e "s/def/$i_url/" ./js/config.js
+          
           echo "printing modified config js"
           cat ./js/config.js
         continue-on-error: true
 
-      - name: Build config js file 
-        id: buildConfig
-        run: |
-          echo "building my file"
-          uid=$(cat ~/userPoolId2.txt)
-          echo "userPoolId: " >> ./js/config2.js
-          echo "$uid" >> ./js/config2.js
-          echo " printing our config file"
-          cat ./js/config2.js
-        continue-on-error: true
+  
+
+      # - name: Edit userpool in config js file 
+      #   id: editConfig
+      #   run: |
+      #     uid=$(cat ~/userPoolId2.txt)
+      #     sed -i -e "s/xyz/$uid/" ./js/config.js
+      #     echo "printing modified config js"
+      #     cat ./js/config.js
+      #   continue-on-error: true
+
+      # - name: Build config js file 
+      #   id: buildConfig
+      #   run: |
+      #     echo "building my file"
+      #     uid=$(cat ~/userPoolId2.txt)
+      #     echo "userPoolId: " >> ./js/config2.js
+      #     echo "$uid" >> ./js/config2.js
+      #     echo " printing our config file"
+      #     cat ./js/config2.js
+      #   continue-on-error: true
 
       # - name: Build config js file 
       #   id: buildConfig
