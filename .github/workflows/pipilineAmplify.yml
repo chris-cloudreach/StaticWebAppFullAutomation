@@ -27,29 +27,38 @@ jobs:
                          
         continue-on-error: true
         
-      # - name: Init
-      #   id: init
-      #   run: terraform init
+      - name: Init
+        id: init
+        run: terraform init
 
-      # - name: Plan
-      #   id: plan
-      #   run: terraform plan 
-      #   continue-on-error: true
+      - name: Plan
+        id: plan
+        run: terraform plan 
+        continue-on-error: true
 
+      - name: Apply
+        id: apply
+        run: terraform apply --auto-approve
+        continue-on-error: true
 
+      - name: Manipulating userpoolid 
+        id: userpolID
+        run: |
+          terraform output userPoolId > ~/userPoolId.txt
+          echo "checking userpool id"
+          cat ~/userPoolId.txt
+          sed -i -e "s/=/:/" ~/userPoolId.txt
+          echo "checking replacement in userpool id"
+          cat ~/userPoolId.txt
+          
+        continue-on-error: true
 
-      # - name: Apply
-      #   id: apply
-      #   run: terraform apply --auto-approve
-      #   continue-on-error: true
-
-      # - name: Write terraform output to a file 
-      #   id: terraform_output
-      #   run: |
-      #     mkdir ~/terraformOutput
-      #     terraform output > ~/terraformOutput/output.txt
-                 
-      #   continue-on-error: true
+      - name: Edit userpool in config js file 
+        id: editConfig
+        run: |
+          uid=$(cat ~/userPoolId.txt)
+          sed -i -e "s/userPoolId/$uid/" ./js/config.js
+        continue-on-error: true
 
 
      
