@@ -44,12 +44,12 @@ jobs:
       - name: Manipulating userpoolid 
         id: userpolID
         run: |
-          terraform output userPoolId | cut -d'"' -f 2 > ~/userPoolId.txt
+          terraform output userPoolId | cut -d'"' -f 2 > ~/userPoolId2.txt
           echo "printing out the text file"
-          cat ~/userPoolId.txt
-          echo "manipulate"
-          uu=$(cat ~/userPoolId.txt)
-          echo "$uu" > ~/userPoolId.txt
+          cat ~/userPoolId2.txt
+          echo '"' > ~/userPoolId.txt
+          sed -n '3p' ~/userPoolId2.txt >> ~/userPoolId.txt
+          echo '"' >> ~/userPoolId.txt
           echo "checking userpool id oo"
           cat ~/userPoolId.txt
           
