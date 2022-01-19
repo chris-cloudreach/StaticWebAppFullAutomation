@@ -2,7 +2,7 @@ window._config = {
     cognito: {
         xyz,
         
-        abc,
+        xxx,
         
         region: 'us-east-2' // e.g. us-east-2
     },
