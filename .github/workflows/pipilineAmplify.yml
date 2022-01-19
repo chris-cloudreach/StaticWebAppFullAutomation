@@ -31,10 +31,10 @@ jobs:
         id: init
         run: terraform init
 
-      # - name: Plan
-      #   id: plan
-      #   run: terraform plan 
-      #   continue-on-error: true
+      - name: Plan
+        id: plan
+        run: terraform plan 
+        continue-on-error: true
 
       - name: Apply
         id: apply
@@ -69,39 +69,27 @@ jobs:
           cat ./js/config.js
         continue-on-error: true
 
+      - name: Commit files # transfer the new html files back into the repository
+      run: |
+        git config --local user.name "chris-cloudreach"
+        git add ./js/config.js
+        git commit -m "Updating config js file"
+
+      - name: Push changes # push the output folder to your repo
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.PAT }}
+          force: true
+
   
 
-      # - name: Edit userpool in config js file 
-      #   id: editConfig
-      #   run: |
-      #     uid=$(cat ~/userPoolId2.txt)
-      #     sed -i -e "s/xyz/$uid/" ./js/config.js
-      #     echo "printing modified config js"
-      #     cat ./js/config.js
-      #   continue-on-error: true
+   
 
 
      
 
-      # - name: Build config js file 
-      #   id: buildConfig
-      #   run: |
-      #     echo "building my file"
-      #     uid=$(cat ~/userPoolId2.txt)
-      #     echo "userPoolId: " >> ./js/config2.js
-      #     echo "$uid" >> ./js/config2.js
-      #     echo " printing our config file"
-      #     cat ./js/config2.js
-      #   continue-on-error: true
+ 
 
-      # - name: Build config js file 
-      #   id: buildConfig
-      #   run: |
-      #     echo "building my file"
-      #     uid=$(cat ~/userPoolId.txt)
-      #     sed -e "s/xyz/$uid/" ./js/config.js
-      #     cat ./js/config2.js
-      #   continue-on-error: true
 
 
      

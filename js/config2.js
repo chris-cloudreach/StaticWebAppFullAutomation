@@ -1,2 +1,0 @@
-window._config = {
-    cognito: {
