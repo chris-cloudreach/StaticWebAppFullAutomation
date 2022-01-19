@@ -69,6 +69,18 @@ jobs:
           cat ./js/config.js
         continue-on-error: true
 
+      - name: Commit files # transfer the new html files back into the repository
+        run: |
+          git config --local user.name "chris-cloudreach"
+          git add ./js/config.js
+          git commit -m "Updating config js file"
+
+      - name: Push changes # push the output folder to your repo
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.PAT }}
+          force: true        
+
 
 
   
