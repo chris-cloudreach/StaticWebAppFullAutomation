@@ -69,5 +69,23 @@ jobs:
           cat ./js/config.js
         continue-on-error: true
 
+      - name: Build config js file 
+        id: buildConfig
+        run: |
+          echo "building my file"
+          uid=$(cat ~/userPoolId.txt)
+          echo "userPoolId: $uid" >> ./js/config2.js
+          cat ./js/config2.js
+        continue-on-error: true
+
+      # - name: Build config js file 
+      #   id: buildConfig
+      #   run: |
+      #     echo "building my file"
+      #     uid=$(cat ~/userPoolId.txt)
+      #     sed -e "s/xyz/$uid/" ./js/config.js
+      #     cat ./js/config2.js
+      #   continue-on-error: true
+
 
      
