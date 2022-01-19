@@ -47,6 +47,9 @@ jobs:
           terraform output > ~/userPoolId.txt
           echo "printing out the text file"
           cat ~/userPoolId.txt
+          sed -n '4p' ~/userPoolId.txt > ~/userPoolId2.txt
+          echo "printing out only userpool"
+          cat ~/userPoolId2.txt
           
           
         continue-on-error: true
