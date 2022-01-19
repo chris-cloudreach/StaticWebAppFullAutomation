@@ -81,8 +81,7 @@ jobs:
       #   continue-on-error: true
 
 
-      i_url=$(cat ~/apigwurl.txt)
-      sed -i -e "s/def/$i_url/" ./js/config.js
+     
 
       # - name: Build config js file 
       #   id: buildConfig
