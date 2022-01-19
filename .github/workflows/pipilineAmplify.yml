@@ -74,7 +74,7 @@ jobs:
         run: |
           echo "building my file"
           
-          echo "userPoolId: " >> ./js/config2.js
+          
           cat ./js/config2.js
         continue-on-error: true
 
