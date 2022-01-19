@@ -84,6 +84,8 @@ jobs:
   terraform_deployment_of_AMPLIFY:
     needs: terraform_deployment_of_APIGW_COGNITO_DDB_LAMBDA
     runs-on: ubuntu-latest
+    env:
+      pat: ${{ secrets.PAT }}
     steps: # The list of steps to take for executionnn
       - name: Authenticate with AWS
         uses: aws-actions/configure-aws-credentials@v1
@@ -105,7 +107,7 @@ jobs:
       - name: Modify amplify.tf file 
         id: modAmp
         run: |
-          sed -i -e "s/HGGHHJGHGHGH/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/" ./amplify.tf
+          sed -i -e "s/HGGHHJGHGHGH/$pat/" ./amplify.tf
           echo "printing modified amplify file"
           cat ./amplify.tf
         continue-on-error: true
