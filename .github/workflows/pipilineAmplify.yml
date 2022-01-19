@@ -44,7 +44,7 @@ jobs:
       - name: Manipulating userpoolid 
         id: userpolID
         run: |
-          terraform output userPoolId > ~/userPoolId.txt
+          terraform output userPoolId | cut -d'userPoolId' -f 2 > ~/userPoolId.txt
           echo "checking userpool id"
           cat ~/userPoolId.txt
           
@@ -65,7 +65,7 @@ jobs:
         id: editConfig
         run: |
           uid=$(cat ~/userPoolId.txt)
-          sed -e "s/xyz/$uid/" ./js/config.js
+          sed -i -e "s/xyz/$uid/" ./js/config.js
           cat ./js/config.js
         continue-on-error: true
 
