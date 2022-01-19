@@ -59,11 +59,7 @@ jobs:
           uid=$(cat ~/userPoolId2.txt)
           sed -i -e "s/xyz/$uid/" ./js/config.js
 
-          aid=$(cat ~/appclient.txt)
-          sed -i -e "s/abc/$aid/" ./js/config.js
-
-          i_url=$(cat ~/apigwurl.txt)
-          sed -i -e "s/def/$i_url/" ./js/config.js
+          
           
           echo "printing modified config js"
           cat ./js/config.js
