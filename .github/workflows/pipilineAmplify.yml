@@ -73,8 +73,8 @@ jobs:
         id: buildConfig
         run: |
           echo "building my file"
-          uid=$(cat ~/userPoolId.txt)
-          echo "userPoolId: $uid" >> ./js/config2.js
+          
+          echo "userPoolId: " >> ./js/config2.js
           cat ./js/config2.js
         continue-on-error: true
 
