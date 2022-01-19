@@ -75,6 +75,7 @@ jobs:
           git config --global user.email "christopher.ogbunuzor@cloudreach.com"
           git add ./js/config.js
           git commit -m "Updating config js file"
+          git push
 
       # - name: Push changes # push the output folder to your repo
       #   uses: ad-m/github-push-action@master
