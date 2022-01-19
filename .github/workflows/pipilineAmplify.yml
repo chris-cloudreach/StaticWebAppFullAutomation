@@ -77,11 +77,69 @@ jobs:
           git commit -m "Updating config js file"
           git push
 
-      # - name: Push changes # push the output folder to your repo
-      #   uses: ad-m/github-push-action@master
-      #   with:
-      #     github_token: ${{ secrets.PAT }}
-      #     force: true        
+        continue-on-error: true
+
+
+
+  terraform_deployment_of_AMPLIFY:
+    needs: terraform_deployment_of_APIGW_COGNITO_DDB_LAMBDA
+    runs-on: ubuntu-latest
+    steps: # The list of steps to take for executionnn
+      - name: Authenticate with AWS
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-2
+
+      - name: Clone your code in the pipeline
+        uses: actions/checkout@v2
+
+      - name: Terraform setup
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Init
+        id: init
+        run: terraform init
+
+      - name: Modify amplify.tf file 
+        id: modAmp
+        run: |
+          sed -i -e "s/HGGHHJGHGHGH/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/" ./amplify.tf
+          echo "printing modified amplify file"
+          cat ./amplify.tf
+        continue-on-error: true
+
+      # - name: Modify amplify.tf file 
+      #   id: modAmp
+      #   run: |
+      #     echo "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" > ~/PAT.txt
+      #     echo "Modifying amplify file"
+      #     uidD=$(cat ~/PAT.txt)
+      #     sed -i -e "s/HGGHHJGHGHGH/$uidD/" ./amplify.tf
+      #     echo "printing modified amplify file"
+      #     cat ./amplify.tf
+      #   continue-on-error: true
+
+      # - name: Create amplify file
+      #   id: create
+      #   run: |
+      #     terraform plan 
+      #   continue-on-error: true
+      - name: Plan
+        id: plan
+        run: terraform plan 
+        continue-on-error: true
+
+      - name: Apply
+        id: apply
+        run: terraform apply --auto-approve
+        continue-on-error: true
+
+
+
+
+       
 
 
 
