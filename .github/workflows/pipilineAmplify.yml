@@ -23,7 +23,7 @@ jobs:
           echo "echo the working directory below"
           pwd
           echo "Reading the config file now below"
-          cat ~/js/config.js
+          cat ./js/config.js
                          
         continue-on-error: true
         
