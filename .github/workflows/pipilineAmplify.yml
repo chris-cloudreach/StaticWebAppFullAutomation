@@ -105,7 +105,7 @@ jobs:
       - name: Modify amplify.tf file 
         id: modAmp
         run: |
-          sed -i -e "s/HGGHHJGHGHGH/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/" ./amplify.tf
+          sed -i -e "s/HGGHHJGHGHGH/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/" ./amplify.tf
           echo "printing modified amplify file"
           cat ./amplify.tf
         continue-on-error: true

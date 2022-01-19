@@ -7,7 +7,7 @@ resource "aws_amplify_app" "amplify_test_buildspec" {
   custom_rule {
     source = "/<*>"
     status = "404"
-    target = "/index.html"
+    target = "/index.html" #nothing
   }
 
   #Auto Branch Creation
