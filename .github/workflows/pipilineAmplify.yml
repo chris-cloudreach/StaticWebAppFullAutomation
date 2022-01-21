@@ -27,9 +27,9 @@ jobs:
                          
         continue-on-error: true
         
-      # - name: Init
-      #   id: init
-      #   run: terraform init
+      - name: Init
+        id: init
+        run: terraform init
 
       # - name: Plan
       #   id: plan
@@ -109,13 +109,13 @@ jobs:
         id: init
         run: terraform init
 
-      - name: Modify amplify.tf file 
-        id: modAmp
-        run: |
-          sed -i -e "s/HGGHHJGHGHGH/$pat/" ./amplify.tf
-          echo "printing modified amplify file"
-          cat ./amplify.tf
-        continue-on-error: true
+      # - name: Modify amplify.tf file 
+      #   id: modAmp
+      #   run: |
+      #     sed -i -e "s/HGGHHJGHGHGH/$pat/" ./amplify.tf
+      #     echo "printing modified amplify file"
+      #     cat ./amplify.tf
+      #   continue-on-error: true
 
     
 
