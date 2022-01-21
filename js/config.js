@@ -1,13 +1,13 @@
 window._config = {
     cognito: {
-        xyz,
+        userPoolId : "eu-west-2_glUh7ssdM",
         
-        xxx,
+        userPoolClientId : "24iu93gbdifn6l9knfgrhfaodb",
         
         region: 'us-east-2' // e.g. us-east-2
     },
     api: {
-        zzz
+        invokeUrl : "https://fabzbqbt8c.execute-api.eu-west-2.amazonaws.com/DEV"
         
     }
 };
