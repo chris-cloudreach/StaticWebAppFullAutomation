@@ -27,14 +27,14 @@ jobs:
                          
         continue-on-error: true
         
-      - name: Init
-        id: init
-        run: terraform init
+      # - name: Init
+      #   id: init
+      #   run: terraform init
 
-      - name: Plan
-        id: plan
-        run: terraform plan 
-        continue-on-error: true
+      # - name: Plan
+      #   id: plan
+      #   run: terraform plan 
+      #   continue-on-error: true
 
       - name: Apply
         id: apply
@@ -70,16 +70,20 @@ jobs:
           cat ./js/config.js
         continue-on-error: true
 
-      - name: Commit files # transfer the new html files back into the repository
-        run: |
-          git config --global user.name "chris-cloudreach"
-          git config --global user.email "christopher.ogbunuzor@cloudreach.com"
-          git add ./js/config.js
-          git commit -m "Updating config js file"
-          git push
+      # - name: Commit files # transfer the new html files back into the repository
+      #   run: |
+      #     git config --global user.name "chris-cloudreach"
+      #     git config --global user.email "christopher.ogbunuzor@cloudreach.com"
+      #     git add ./js/config.js
+      #     git commit -m "Updating config js file"
+      #     git push
 
+      #   continue-on-error: true
+
+      - name: Destroy
+        id: destroy
+        run: terraform destroy --auto-approve
         continue-on-error: true
-
 
 
   terraform_deployment_of_AMPLIFY:
@@ -113,31 +117,18 @@ jobs:
           cat ./amplify.tf
         continue-on-error: true
 
-      # - name: Modify amplify.tf file 
-      #   id: modAmp
-      #   run: |
-      #     echo "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" > ~/PAT.txt
-      #     echo "Modifying amplify file"
-      #     uidD=$(cat ~/PAT.txt)
-      #     sed -i -e "s/HGGHHJGHGHGH/$uidD/" ./amplify.tf
-      #     echo "printing modified amplify file"
-      #     cat ./amplify.tf
+    
+
+     
+      # - name: Plan
+      #   id: plan
+      #   run: terraform plan 
       #   continue-on-error: true
 
-      # - name: Create amplify file
-      #   id: create
-      #   run: |
-      #     terraform plan 
+      # - name: Apply
+      #   id: apply
+      #   run: terraform apply --auto-approve
       #   continue-on-error: true
-      - name: Plan
-        id: plan
-        run: terraform plan 
-        continue-on-error: true
-
-      - name: Apply
-        id: apply
-        run: terraform apply --auto-approve
-        continue-on-error: true
 
       - name: Destroy
         id: destroy
